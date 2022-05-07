@@ -59,6 +59,9 @@ export const ipReg = /^((2(5[0-5]|[0-4]\d))|(1\d{1,2})|([1-9]?\d))(\.((2(5[0-5]|
  * @returns 校验结果
  */
 export function isUrl(val = '') {
+  if (!val) {
+    return false;
+  }
   let noProtocol = val.replace(/http(s)?:\/\//, '');
   let pathIdx = noProtocol.indexOf('/');
   let portIdx = noProtocol.indexOf(':');
@@ -80,9 +83,17 @@ export function isUrl(val = '') {
 }
 
 export default {
-  phoneReg,
-  isNumber,
+  mobilePhoneCnReg,
+  telePhoneCnReg,
   isCnPhone,
+
   emailReg,
   isEmail,
+
+  domainUrlReg,
+  localHostReg,
+  domainReg,
+  ipUrlReg,
+  ipReg,
+  isUrl,
 };
