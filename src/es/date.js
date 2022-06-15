@@ -30,7 +30,7 @@
  * @param {Number|String|Date} d 符合规范的时间格式
  * @param {String} formatter 需要定制的时间格式模板
  */
-export function dateFomat(d, formatter = 'yyyy-MM-dd') {
+export function format(d, formatter = 'yyyy-MM-dd') {
   const date = checkValid(d);
   if (!date) {
     return d ? d.toString() : '';
@@ -66,5 +66,5 @@ export function dateFomat(d, formatter = 'yyyy-MM-dd') {
 
 export default {
   checkValid,
-  dateFomat,
+  format,
 };
