@@ -1,0 +1,28 @@
+{
+  "name": "js-utils",
+  "version": "0.1.0",
+  "description": "A JavaScript library like lodash, have a lot of effectional functions or methods.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeijianXu/js-utils.git"
+  },
+  "keywords": [
+    "library",
+    "utils",
+    "javascript"
+  ],
+  "author": "William Xu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WeijianXu/js-utils/issues"
+  },
+  "homepage": "https://github.com/WeijianXu/js-utils#readme",
+  "devDependencies": {
+    "release-it": "^15.4.2"
+  }
+}
