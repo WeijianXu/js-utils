@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/WeijianXu/js-utils#readme",
   "devDependencies": {
+    "@release-it/conventional-changelog": "^5.1.0",
     "release-it": "^15.4.2"
   }
 }
