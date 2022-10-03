@@ -1,5 +1,5 @@
 {
-  "name": "js-utils",
+  "name": "@wjxu/js-utils",
   "version": "0.1.0",
   "description": "A JavaScript library like lodash, have a lot of effectional functions or methods.",
   "main": "index.js",
