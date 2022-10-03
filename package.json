@@ -1,6 +1,6 @@
 {
   "name": "js-utils-xu",
-  "version": "0.2.3",
+  "version": "0.2.1",
   "description": "A JavaScript library like lodash, have a lot of effectional functions or methods.",
   "main": "index.js",
   "scripts": {
