@@ -28,7 +28,7 @@
 /**
  * 格式化时间
  * @param {Number|String|Date} d 符合规范的时间格式
- * @param {String} formatter 需要定制的时间格式模板
+ * @param {String} formatter 需要定制的时间格式模板，默认 'yyyy-MM-dd'
  */
 export function format(d, formatter = 'yyyy-MM-dd') {
   const date = checkValid(d);
@@ -64,7 +64,65 @@ export function format(d, formatter = 'yyyy-MM-dd') {
   return fmt;
 }
 
+
+/**
+ * 计算当前时间所经历的起至月份，起点月份为一月
+ * @param {Date} d 时间对象
+ * @param {String} formatter 需要定制的时间格式模板，默认 'yyyy-MM'
+ */
+export function getStartAndEndMonth(d = new Date(), formatter = 'yyyy-MM') {
+  const date = this.checkValid(d);
+  if (!date) {
+    return { startMonth: '', endMonth: '' };
+  }
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const startMonth = `${year}-01`;
+  const endMonth = `${year}-${month < 9 ? '0' : ''}${month + 1}`;
+  return {
+    startMonth: formatter === 'yyyy-MM' ? startMonth : format(startMonth, formatter),
+    endMonth: formatter === 'yyyy-MM' ? endMonth : format(endMonth, formatter),
+  };
+}
+
+/**
+ * 计算当前时间所经历的起至天，起点月份为一月一号
+ * @param {Date} d 时间对象
+ */
+export function getStartAndEndDay(d = new Date(), formatter = 'yyyy-MM') {
+  const date = this.checkValid(d);
+  if (!date) {
+    return { startDate: '', endDate: '' };
+  }
+  const year = date.getFullYear();
+  // const month = date.getMonth();
+  const startMonth = `${year}-01-01`;
+  const endMonth = `${year}-${month < 9 ? '0' : ''}${month + 1}`;
+  return {
+    startDate: formatter === 'yyyy-MM' ? startMonth : format(startMonth, formatter),
+    endDate: format(date, formatter),
+  };
+}
+
+
+/**
+ * 判断当前时间是否大于等于 9999-12-31，企业注册一般设置的最长时间
+ * @param {Number|String|Date} d 符合规范的时间格式
+ */
+export function checkLong(d) {
+  const date = this.checkValid(d);
+  if (!date) {
+    return false;
+  }
+  const time = date.getTime();
+  // new Date('9999-12-31').getTime() => 253402214400000
+  return time >= 253402214400000;
+}
+
 export default {
   checkValid,
   format,
+  getStartAndEndMonth,
+  getStartAndEndDay,
+  checkLong
 };
