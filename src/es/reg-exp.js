@@ -82,6 +82,25 @@ export function isUrl(val = '') {
   return domainUrlReg.test(val);
 }
 
+/**
+ * 判断是否有特殊字符（除了数字、字母）
+ * @param {String} str 待校验的字符串
+ * @returns 校验结果
+ */
+export function hasSpecKeywordChart(str) {
+  const reg = /[`~!@#$%^&*()_\-+=<>?:"{}|,./;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、]+/im;
+  return reg.test(str);
+}
+
+/**
+ * 判断是否含有汉字
+ * @param {String} str 待校验的字符串
+ * @returns 校验结果
+ */
+export function hasChineseChart(str) {
+  return /[\u4E00-\u9FA5]+/.test(str);
+}
+
 export default {
   mobilePhoneCnReg,
   telePhoneCnReg,
@@ -96,4 +115,7 @@ export default {
   ipUrlReg,
   ipReg,
   isUrl,
+
+  hasSpecKeywordChart,
+  hasChineseChart,
 };
