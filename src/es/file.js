@@ -95,6 +95,33 @@ export function pdf(fileStream, fileConfig) {
   downLoadByBlob(blob, { filename: iFileName, contentType, ...rest, ...rest });
 }
 
+/**
+ * 利用表单 form 进行文件下载，可以携带参数
+ * @param {String} url 文件路径
+ * @param {Object} params 文件下载所需参数
+ * @param {Object} param2 设置表单的一些配置项
+ * @returns 表单元素对象（10秒后将删除）
+ */
+export function downLoadByForm(url, params, { method = 'post' }) {
+  const formEle = document.createElement('form');
+  formEle.action = url;
+  formEle.method = method;
+  formEle.style.display = 'none';
+  // 参数设置
+  Object.keys(params).forEach((x) => {
+    const opt = document.createElement('textarea');
+    opt.name = x;
+    opt.value = params[x];
+    formEle.appendChild(opt);
+  });
+  document.body.appendChild(formEle);
+  formEle.submit();
+  setTimeout(() => {
+    document.body.removeChild(formEle);
+  }, 10000);
+  return formEle;
+}
+
 export default {
   downLoad,
   downLoadByBlob,
