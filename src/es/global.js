@@ -44,9 +44,60 @@ export function setFontSizeToRoot(fontSize) {
   htmlDom.style.fontSize = typeof fontSize === 'number' ? `${fontSize}px` : fontSize;
 }
 
+/**
+ * 使用全屏模式
+ * @param {HTMLElement} element 触发全屏的元素
+ */
+export function fullScreenEnter(element) {
+  if (window.ActiveXObject) {
+    // IE 10及以下ActiveXObject
+    const WsShell = new window.ActiveXObject('WScript.Shell');
+    WsShell.SendKeys('{F11}');
+  } else if (element.requestFullScreen) {
+    // HTML W3C 提议
+    element.requestFullScreen();
+  } else if (element.msRequestFullscreen) {
+    // IE11
+    element.msRequestFullscreen();
+  } else if (element.webkitRequestFullScreen) {
+    // Webkit (works in Safari5.1 and Chrome 15)
+    element.webkitRequestFullScreen();
+  } else if (element.mozRequestFullScreen) {
+    // Firefox (works in nightly)
+    element.mozRequestFullScreen();
+  }
+}
+
+/**
+ * 退出全屏模式
+ * @param {HTMLElement} element 退出全屏的元素
+ */
+export function fullScreenExit(element) {
+  if (window.ActiveXObject) {
+    // IE ActiveXObject
+    const WsShell = new window.ActiveXObject('WScript.Shell');
+    WsShell.SendKeys('{F11}');
+  } else if (element.exitFullscreen) {
+    // HTML5 W3C 提议
+    document.exitFullscreen();
+  } else if (element.msExitFullscreen) {
+    // IE 11
+    document.msExitFullscreen();
+  } else if (element.webkitCancelFullScreen) {
+    // Webkit (works in Safari5.1 and Chrome 15)
+    document.webkitCancelFullScreen();
+  } else if (element.mozCancelFullScreen) {
+    // Firefox (works in nightly)
+    document.mozCancelFullScreen();
+  }
+}
+
 export default {
   getFontSize,
   fitScreenWidth,
   fitScreenHeight,
-  setFontSizeToRoot
+  setFontSizeToRoot,
+
+  fullScreenEnter,
+  fullScreenExit
 }
