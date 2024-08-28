@@ -2,6 +2,8 @@
  * 时间转换.
  * @module dateUtils
  */
+import { extractPart } from './reg-exp';
+
 /**
  * 校验当前值是否是正确的时间格式
  * 1. 是，则返回标准时间对象；
@@ -45,19 +47,21 @@ export function format(d, formatter = 'yyyy-MM-dd') {
     'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
     S: date.getMilliseconds(), // 毫秒
   };
-  if (/(y+)/.test(fmt)) {
+  const $1 = extractPart(fmt, '(y+)', 1);
+  if ($1) {
     fmt = fmt.replace(
-      RegExp.$1,
-      `${date.getFullYear()}`.substr(4 - RegExp.$1.length),
+      $1,
+      `${date.getFullYear()}`.substring(4 - $1.length),
     );
   }
   Object.keys(o).forEach((k) => {
-    if (new RegExp(`(${k})`).test(fmt)) {
+    const $1 = extractPart(fmt, `(${k})`, 1);
+    if ($1) {
       fmt = fmt.replace(
-        RegExp.$1,
-        RegExp.$1.length === 1
+        $1,
+        $1.length === 1
           ? o[k].toString()
-          : `00${o[k]}`.substr(`${o[k]}`.length),
+          : `00${o[k]}`.substring(`${o[k]}`.length),
       );
     }
   });

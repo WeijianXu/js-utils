@@ -101,6 +101,21 @@ export function hasChineseChart(str) {
   return /[\u4E00-\u9FA5]+/.test(str);
 }
 
+/**
+ * 使用match 代替 RegExp.$1 等匹配项，避免安全问题，提高性能
+ * @param {String} input 输入字符串
+ * @param {RegExp} pattern 正则表达式
+ * @returns 匹配项
+ */
+export function extractPart(input, pattern, index = 1) {
+    if (!input || !pattern) {
+      return null;
+    }
+    const regex = new RegExp(pattern);
+    const match = input.match(regex);
+    return match ? match[index] : null;
+}
+
 export default {
   mobilePhoneCnReg,
   telePhoneCnReg,
@@ -118,4 +133,6 @@ export default {
 
   hasSpecKeywordChart,
   hasChineseChart,
+
+  extractPart
 };
