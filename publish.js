@@ -1,4 +1,4 @@
-import publish from "./index.js";
+import publish from "npm-publish-it";
 
 publish({
   needOtp: true
