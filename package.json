@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "release-it"
+    "pub": "node publish.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/WeijianXu/js-utils#readme",
   "devDependencies": {
-    "@release-it/conventional-changelog": "^5.1.0",
-    "release-it": "^15.4.2"
+    "npm-publish-it": "^0.1.1"
   }
 }
