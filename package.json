@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/WeijianXu/js-utils#readme",
   "devDependencies": {
-    "npm-publish-it": "^0.1.1"
+    "npm-publish-it": "^0.1.4"
   }
 }
